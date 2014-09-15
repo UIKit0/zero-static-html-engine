@@ -1,0 +1,90 @@
+var gulp        = require('gulp'),
+    gutil       = require('gulp-util'),
+    compass     = require('gulp-compass'),
+    fileinclude = require('gulp-file-include'),
+    rename      = require('gulp-rename'),
+    notify      = require('gulp-notify'),
+    livereload  = require('gulp-livereload'),
+    lr          = require('tiny-lr'),
+    connect     = require('gulp-connect'),
+    server      = lr(),
+    path        = require("path");
+
+var paths = {
+  templates: './templates/',
+  partials: './partials/',
+  sass: './scss/'
+};
+
+// fileinclude: grab partials from templates and render out html files
+// ==========================================
+gulp.task('fileinclude', function() {
+  return gulp.src(path.join(paths.templates, '*.tpl.html'))
+  .pipe(fileinclude())
+  .pipe(rename({
+    extname: ""
+  }))
+  .pipe(rename({
+    extname: ".html"
+  }))
+  .pipe(gulp.dest('./out/'))
+  .pipe(livereload(server))
+  .pipe(notify({ message: 'Includes: included' }));
+});
+
+//  Sass: compile sass to css task - uses Libsass
+//===========================================
+gulp.task('compass', function() {
+  return gulp.src(path.join(paths.sass, '*.scss'))
+    .pipe(compass({
+      config_file: './config.rb',
+      css: './out/assets/css/',
+      sass: 'scss'
+    }))
+    .pipe(livereload(server))
+    .pipe(notify({ message: 'CSS Compiled' }));
+});
+
+//  Connect: sever task
+//===========================================
+gulp.task('connect', function() {
+  connect.server({
+    port: 1337,
+    root: [__dirname] + '/out/',
+    livereload: false
+  });
+});
+
+function watchStuff(task) {
+  // Listen on port other than 35729
+  server.listen(35728, function (err) {
+    if (err) {
+      return console.error(err)
+      //TODO use notify to log a message on Sass compile fail and Beep
+    };
+
+    //Watch task for sass
+    gulp.watch(path.join(paths.sass, '**/*.scss'), [task]);
+
+    // watch task for gulp-includes
+    gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude']);
+
+    // watch task for gulp-includes
+    gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude']);
+
+  });
+}
+
+//  Watch and Livereload using Compass
+//===========================================
+gulp.task('watch', function() {
+
+  watchStuff('compass');
+
+});
+
+//  Default Gulp Task
+//===========================================
+gulp.task('default', ['fileinclude', 'compass', 'connect', 'watch'], function() {
+
+});
