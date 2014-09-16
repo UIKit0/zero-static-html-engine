@@ -1,0 +1,28 @@
+{
+  "name": "gulp-site-generator",
+  "version": "0.0.1",
+  "description": "Basic watch and builder of flat html.",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tomgenoni/gulp-static-generator"
+  },
+  "author": "Tom Genoni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomgenoni/gulp-static-generator/issues"
+  },
+  "homepage": "https://github.com/tomgenoni/gulp-static-generator",
+  "dependencies": {
+    "gulp": "^3.8.8",
+    "nuclear-js": "0.0.3",
+    "gulp-shell": "^0.2.9",
+    "jstransform-loader": "^0.1.1",
+    "jstransform": "^6.2.0",
+    "through": "^2.3.4",
+    "css-loader": "^0.8.0",
+    "style-loader": "^0.8.0",
+    "jquery": "^2.1.1",
+    "vue": "^0.10.6"
+  }
+}
