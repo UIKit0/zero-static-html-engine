@@ -8,7 +8,7 @@ Output a static site using Gulp tasks based on [https://medium.com/objects-in-sp
 - Templates and partials
 - Sass/Compass compilation
 - Preview server
-- Watch process recompiles HTML and Sass on any change
+- Watch process recompiles HTML and Sass on any change into a `_site` directory
 
 ## Usage
 
@@ -20,6 +20,6 @@ In a terminal window run:
 
      gulp
 
-And visit [http://localhost:1337/](http://localhost:1337/). This displays the flat-file content of the `out` directory.
+And visit [http://localhost:1337/](http://localhost:1337/). This displays the flat-file content of the `_site` directory.
 
 Install and enable the [LiveReload Chrome Extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) to auto-refresh the browser.
