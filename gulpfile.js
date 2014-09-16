@@ -11,8 +11,8 @@ var gulp        = require('gulp'),
     path        = require("path");
 
 var paths = {
-  templates: './templates/',
-  partials: './partials/',
+  templates: './html_templates/',
+  partials: './html_partials/',
   assets: './assets/',
   sass: './scss/'
 };
@@ -21,7 +21,7 @@ var paths = {
 //===========================================
 gulp.task('copy_assets', function() {
   gulp.src('assets/**/*')
-    .pipe(gulp.dest('out/assets/'))
+    .pipe(gulp.dest('_site/assets/'))
     .pipe(livereload(server))
 });
 
@@ -36,7 +36,7 @@ gulp.task('fileinclude', function() {
   .pipe(rename({
     extname: ".html"
   }))
-  .pipe(gulp.dest('./out/'))
+  .pipe(gulp.dest('./_site/'))
   .pipe(livereload(server))
   .pipe(notify({ message: 'Includes: included' }));
 });
@@ -47,7 +47,7 @@ gulp.task('compass', function() {
   return gulp.src(path.join(paths.sass, '*.scss'))
     .pipe(compass({
       config_file: './config.rb',
-      css: './out/assets/css/',
+      css: './_site/assets/css/',
       sass: 'scss'
     }))
     .pipe(livereload(server))
@@ -59,7 +59,7 @@ gulp.task('compass', function() {
 gulp.task('connect', function() {
   connect.server({
     port: 1337,
-    root: [__dirname] + '/out/',
+    root: [__dirname] + '/_site/',
     livereload: false
   });
 });
