@@ -22,7 +22,7 @@ var paths = {
 gulp.task('copy_assets', function() {
   gulp.src('assets/**/*')
     .pipe(gulp.dest('_site/assets/'))
-    .pipe(livereload(server))
+    .pipe(livereload())
     //.pipe(notify({ message: 'Assets Copied' }));
 });
 
@@ -40,7 +40,7 @@ gulp.task('fileinclude', function() {
     extname: ".html"
   }))
   .pipe(gulp.dest('./_site/'))
-  .pipe(livereload(server))
+  .pipe(livereload())
   //.pipe(notify({ message: 'Includes: included' }));
 });
 
@@ -53,7 +53,7 @@ gulp.task('compass', function() {
       css: './_site/assets/css/',
       sass: 'scss'
     }))
-    .pipe(livereload(server))
+    .pipe(livereload())
     //.pipe(notify({ message: 'CSS Compiled' }));
 });
 
