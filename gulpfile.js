@@ -57,7 +57,7 @@ gulp.task('compass', function() {
     //.pipe(notify({ message: 'CSS Compiled' }));
 });
 
-//  Connect: sever task
+//  connect: sever task
 //===========================================
 gulp.task('connect', function() {
   connect.server({
@@ -67,7 +67,7 @@ gulp.task('connect', function() {
   });
 });
 
-//  Watch and Livereload using Compass
+//  watch: monitor html and static assets updates
 //===========================================
 gulp.task('watch', function() {
 
