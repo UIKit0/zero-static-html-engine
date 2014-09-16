@@ -13,8 +13,17 @@ var gulp        = require('gulp'),
 var paths = {
   templates: './templates/',
   partials: './partials/',
+  assets: './assets/',
   sass: './scss/'
 };
+
+//  Copy Static Assets
+//===========================================
+gulp.task('copy_assets', function() {
+  gulp.src('assets/**/*')
+    .pipe(gulp.dest('out/assets/'))
+    .pipe(livereload(server))
+});
 
 // fileinclude: grab partials from templates and render out html files
 // ==========================================
@@ -55,7 +64,7 @@ gulp.task('connect', function() {
   });
 });
 
-function watchStuff(task) {
+function watchStuff() {
   // Listen on port other than 35729
   server.listen(35728, function (err) {
     if (err) {
@@ -64,13 +73,12 @@ function watchStuff(task) {
     };
 
     //Watch task for sass
-    gulp.watch(path.join(paths.sass, '**/*.scss'), [task]);
+    gulp.watch(path.join(paths.sass, '**/*.scss'), ['compass']);
 
-    // watch task for gulp-includes
+    // watch task for templates, partials, static files
     gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude']);
-
-    // watch task for gulp-includes
     gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude']);
+    gulp.watch(path.join(paths.assets, '**/*.{png,jpg,jpeg,css,js}'), ['copy_assets']);
 
   });
 }
@@ -79,12 +87,12 @@ function watchStuff(task) {
 //===========================================
 gulp.task('watch', function() {
 
-  watchStuff('compass');
+  watchStuff();
 
 });
 
 //  Default Gulp Task
 //===========================================
-gulp.task('default', ['fileinclude', 'compass', 'connect', 'watch'], function() {
+gulp.task('default', ['fileinclude', 'compass', 'copy_assets', 'connect', 'watch'], function() {
 
 });
