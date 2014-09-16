@@ -12,6 +12,10 @@ Output a static site using Gulp tasks based on [https://medium.com/objects-in-sp
 
 ## Usage
 
+Install gulp dependencies:
+
+     sudo npm install
+
 In a terminal window run:
 
      gulp
