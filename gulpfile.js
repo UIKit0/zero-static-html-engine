@@ -30,7 +30,9 @@ gulp.task('copy_assets', function() {
 // ==========================================
 gulp.task('fileinclude', function() {
   return gulp.src(path.join(paths.templates, '*.tpl.html'))
-  .pipe(fileinclude())
+  .pipe(fileinclude({
+    basepath: '@root'
+  }))
   .pipe(rename({
     extname: ""
   }))
