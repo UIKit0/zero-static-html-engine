@@ -17,19 +17,14 @@ var paths = {
   sass: './scss/'
 };
 
-//  copy_assets: copy static assets
-//===========================================
-gulp.task('copy_assets', function() {
-  gulp.src('assets/**/*')
-    .pipe(gulp.dest('_site/assets/'))
-    .pipe(livereload())
-    //.pipe(notify({ message: 'Assets Copied' }));
-});
+function swallowError (error) {
+    this.emit('end');
+}
 
 // fileinclude: grab partials from templates and render html files
 // ==========================================
 gulp.task('fileinclude', function() {
-  return gulp.src(path.join(paths.templates, '*.tpl.html'))
+  gulp.src(path.join(paths.templates, '*.tpl.html'))
   .pipe(fileinclude({
     basepath: '@root'
   }))
@@ -41,20 +36,27 @@ gulp.task('fileinclude', function() {
   }))
   .pipe(gulp.dest('./_site/'))
   .pipe(livereload())
-  //.pipe(notify({ message: 'Includes: included' }));
 });
 
 //  compass: compile sass to css
 //===========================================
 gulp.task('compass', function() {
-  return gulp.src(path.join(paths.sass, '*.scss'))
+  gulp.src(path.join(paths.sass, '*.scss'))
     .pipe(compass({
       config_file: './config.rb',
       css: './_site/assets/css/',
       sass: 'scss'
     }))
+    .on('error', swallowError)
     .pipe(livereload())
-    //.pipe(notify({ message: 'CSS Compiled' }));
+});
+
+//  copy_assets: copy static assets
+//===========================================
+gulp.task('copy_assets', function() {
+  gulp.src('assets/**/*')
+    .pipe(gulp.dest('_site/assets/'))
+    .pipe(livereload())
 });
 
 //  connect: sever task
@@ -70,7 +72,6 @@ gulp.task('connect', function() {
 //  watch: monitor html and static assets updates
 //===========================================
 gulp.task('watch', function() {
-
   //Watch task for sass
   gulp.watch(path.join(paths.sass, '**/*.scss'), ['compass']);
 
