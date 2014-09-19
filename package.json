@@ -23,5 +23,8 @@
     "gulp-rename": "^1.2.0",
     "gulp-util": "^3.0.1",
     "tiny-lr": "^0.1.4"
+  },
+  "devDependencies": {
+    "gulp-newer": "^0.3.0"
   }
 }

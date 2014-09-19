@@ -3,6 +3,7 @@ var gulp        = require('gulp'),
     compass     = require('gulp-compass'),
     fileinclude = require('gulp-file-include'),
     rename      = require('gulp-rename'),
+    newer       = require('gulp-newer'),
     notify      = require('gulp-notify'),
     livereload  = require('gulp-livereload'),
     lr          = require('tiny-lr'),
@@ -18,7 +19,8 @@ var paths = {
 };
 
 function swallowError (error) {
-    this.emit('end');
+  notify.onError().apply(this, arguments);
+  this.emit('end');
 }
 
 // fileinclude: grab partials from templates and render html files
@@ -35,7 +37,8 @@ gulp.task('fileinclude', function() {
     extname: ".html"
   }))
   .pipe(gulp.dest('./_site/'))
-  .pipe(livereload())
+  .on('error', swallowError)
+  .pipe(livereload());
 });
 
 //  compass: compile sass to css
@@ -48,15 +51,17 @@ gulp.task('compass', function() {
       sass: 'scss'
     }))
     .on('error', swallowError)
-    .pipe(livereload())
+    .pipe(livereload());
 });
 
-//  copy_assets: copy static assets
+//  copy_assets: copy only new static assets
 //===========================================
+
 gulp.task('copy_assets', function() {
   gulp.src('assets/**/*')
+    .pipe(newer('_site/assets/'))
     .pipe(gulp.dest('_site/assets/'))
-    .pipe(livereload())
+    .pipe(livereload());
 });
 
 //  connect: sever task
