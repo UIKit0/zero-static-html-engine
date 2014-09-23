@@ -29,6 +29,6 @@ Install and enable the [LiveReload Chrome Extension](https://chrome.google.com/w
 
 - If you're unable to run npm install without errors try running the following as you may have a permissions issue. Take from solution to [NPM throws error without sudo](http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo).
 
-     sudo chown -R `whoami` ~/.npm
+     sudo chown -R ``whoami`` ~/.npm
 
 - If you add new subfolders into the `html_templates` directory the gulp process will error and quit. You'll have to restart it.
