@@ -26,7 +26,7 @@ function swallowError (error) {
 // fileinclude: grab partials from templates and render html files
 // ==========================================
 gulp.task('fileinclude', function() {
-  gulp.src(path.join(paths.templates, '*.tpl.html'))
+  gulp.src(path.join(paths.templates, '**/*.tpl.html'))
   .pipe(fileinclude({
     basepath: '@root'
   }))
@@ -83,7 +83,7 @@ gulp.task('watch', function() {
   // watch task for templates, partials, static files
   gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude']);
   gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude']);
-  gulp.watch(path.join(paths.assets, '**/*.{png,jpg,jpeg,css,js}'), ['copy_assets']);
+  gulp.watch(path.join(paths.assets, '**/*.{png,jpg,jpeg,css,js,html}'), ['copy_assets']);
 
 });
 
