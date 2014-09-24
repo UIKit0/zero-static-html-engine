@@ -5,7 +5,7 @@ var gulp        = require('gulp'),
     rename      = require('gulp-rename'),
     newer       = require('gulp-newer'),
     notify      = require('gulp-notify'),
-    clean       = require('gulp-clean'),
+    rimraf      = require('gulp-rimraf'),
     livereload  = require('gulp-livereload'),
     lr          = require('tiny-lr'),
     connect     = require('gulp-connect'),
@@ -24,6 +24,13 @@ function swallowError (error) {
   this.emit('end');
 }
 
+// clean: uses rimraf to remove build directory
+// ==========================================
+
+gulp.task('clean', function (cb) {
+  rimraf('./_build/', cb);
+});
+
 // fileinclude: grab partials from templates and render html files
 // ==========================================
 gulp.task('fileinclude', function() {
@@ -37,7 +44,7 @@ gulp.task('fileinclude', function() {
   .pipe(rename({
     extname: ".html"
   }))
-  .pipe(gulp.dest('./_site/'))
+  .pipe(gulp.dest('./_build/'))
   .on('error', swallowError)
   .pipe(livereload());
 });
@@ -48,7 +55,7 @@ gulp.task('compass', function() {
   gulp.src(path.join(paths.sass, '*.scss'))
     .pipe(compass({
       config_file: './config.rb',
-      css: './_site/assets/css/',
+      css: './_build/assets/css/',
       sass: '_scss'
     }))
     .on('error', swallowError)
@@ -69,7 +76,7 @@ gulp.task('rebuild', function() {
     '!./*.md',
     '!./{node_modules,node_modules/**}'
   ])
-    .pipe(gulp.dest('./_site/'));
+    .pipe(gulp.dest('./_build/'));
 });
 
 
@@ -78,7 +85,7 @@ gulp.task('rebuild', function() {
 gulp.task('connect', function() {
   connect.server({
     port: 1337,
-    root: [__dirname] + '/_site/',
+    root: [__dirname] + '/_build/',
     livereload: false
   });
 });
@@ -94,11 +101,6 @@ gulp.task('watch', function() {
   gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude']);
   gulp.watch(path.join(paths.assets, '**/*'), ['rebuild']);
 
-});
-
-gulp.task('clean', function () {
-  return gulp.src('./_site/', {read: false})
-    .pipe(clean());
 });
 
 //  Default Gulp Task
