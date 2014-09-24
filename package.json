@@ -22,9 +22,8 @@
     "gulp-notify": "^1.6.0",
     "gulp-rename": "^1.2.0",
     "gulp-util": "^3.0.1",
-    "tiny-lr": "^0.1.4"
-  },
-  "devDependencies": {
-    "gulp-newer": "^0.3.0"
+    "tiny-lr": "^0.1.4",
+    "gulp-newer": "^0.3.0",
+    "gulp-clean": "^0.3.1"
   }
 }

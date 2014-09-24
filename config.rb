@@ -1,2 +1,2 @@
-css_dir = 'out/assets/css'
-sass_dir = 'scss'
+css_dir = '_site/assets/css'
+sass_dir = '_scss'

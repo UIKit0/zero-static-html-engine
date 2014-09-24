@@ -5,6 +5,7 @@ var gulp        = require('gulp'),
     rename      = require('gulp-rename'),
     newer       = require('gulp-newer'),
     notify      = require('gulp-notify'),
+    clean       = require('gulp-clean'),
     livereload  = require('gulp-livereload'),
     lr          = require('tiny-lr'),
     connect     = require('gulp-connect'),
@@ -12,10 +13,10 @@ var gulp        = require('gulp'),
     path        = require("path");
 
 var paths = {
-  templates: './html_templates/',
-  partials: './html_partials/',
+  templates: './_html_templates/',
+  partials: './_html_partials/',
   assets: './assets/',
-  sass: './scss/'
+  sass: './_scss/'
 };
 
 function swallowError (error) {
@@ -48,21 +49,29 @@ gulp.task('compass', function() {
     .pipe(compass({
       config_file: './config.rb',
       css: './_site/assets/css/',
-      sass: 'scss'
+      sass: '_scss'
     }))
     .on('error', swallowError)
     .pipe(livereload());
 });
 
-//  copy_assets: copy only new static assets
+//  rebuild: copy any new files
 //===========================================
 
-gulp.task('copy_assets', function() {
-  gulp.src('assets/**/*')
-    .pipe(newer('_site/assets/'))
-    .pipe(gulp.dest('_site/assets/'))
-    .pipe(livereload());
+gulp.task('rebuild', function() {
+  gulp.src([
+    './**', // Copy everything except the following ignores.
+    '!./{_*,_*/**}', // Ignore _folders and their contents
+    '!./.*', // Ignore dot files.
+    '!./config.rb',
+    '!./gulpfile.js',
+    '!./package.json',
+    '!./*.md',
+    '!./{node_modules,node_modules/**}'
+  ])
+    .pipe(gulp.dest('./_site/'));
 });
+
 
 //  connect: sever task
 //===========================================
@@ -83,10 +92,15 @@ gulp.task('watch', function() {
   // watch task for templates, partials, static files
   gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude']);
   gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude']);
-  gulp.watch(path.join(paths.assets, '**/*.{png,jpg,jpeg,css,js,html}'), ['copy_assets']);
+  gulp.watch(path.join(paths.assets, '**/*'), ['rebuild']);
 
+});
+
+gulp.task('clean', function () {
+  return gulp.src('./_site/', {read: false})
+    .pipe(clean());
 });
 
 //  Default Gulp Task
 //===========================================
-gulp.task('default', ['fileinclude', 'compass', 'copy_assets', 'connect', 'watch']);
+gulp.task('default', ['fileinclude', 'compass', 'rebuild', 'connect', 'watch']);
