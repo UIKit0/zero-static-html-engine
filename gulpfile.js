@@ -1,15 +1,12 @@
 var gulp        = require('gulp'),
-    gutil       = require('gulp-util'),
     compass     = require('gulp-compass'),
     fileinclude = require('gulp-file-include'),
     rename      = require('gulp-rename'),
-    newer       = require('gulp-newer'),
     notify      = require('gulp-notify'),
-    rimraf      = require('gulp-rimraf'),
-    livereload  = require('gulp-livereload'),
-    lr          = require('tiny-lr'),
-    connect     = require('gulp-connect'),
-    server      = lr(),
+    del         = require('del'),
+    changed     = require('gulp-changed'),
+    browserSync = require('browser-sync'),
+    reload      = browserSync.reload,
     path        = require("path");
 
 var paths = {
@@ -24,11 +21,11 @@ function swallowError (error) {
   this.emit('end');
 }
 
-// clean: uses rimraf to remove build directory
+// clean: uses del to remove build directory
 // ==========================================
 
 gulp.task('clean', function (cb) {
-  rimraf('./_build/', cb);
+  del('./_build/', cb);
 });
 
 // fileinclude: grab partials from templates and render html files
@@ -46,7 +43,7 @@ gulp.task('fileinclude', function() {
   }))
   .pipe(gulp.dest('./_build/'))
   .on('error', swallowError)
-  .pipe(livereload());
+  .pipe(reload({stream:true}));
 });
 
 //  compass: compile sass to css
@@ -59,7 +56,7 @@ gulp.task('compass', function() {
       sass: '_scss'
     }))
     .on('error', swallowError)
-    .pipe(livereload());
+    .pipe(reload({stream:true}));
 });
 
 //  rebuild: copy any new files
@@ -67,28 +64,23 @@ gulp.task('compass', function() {
 
 gulp.task('rebuild', function() {
   gulp.src([
-    './**', // Copy everything except the following ignores.
-    '!./{_*,_*/**}', // Ignore _folders and their contents
-    '!./.*', // Ignore dot files.
-    '!./config.rb',
-    '!./gulpfile.js',
-    '!./package.json',
-    '!./*.md',
-    '!./{node_modules,node_modules/**}'
+    './assets/**'
   ])
-    .pipe(gulp.dest('./_build/'));
+    .pipe(changed('./_build/assets/'))
+    .pipe(gulp.dest('./_build/assets/'))
+    .pipe(reload({stream:true}));
 });
 
-
-//  connect: sever task
+//  Browsersync server
 //===========================================
-gulp.task('connect', function() {
-  connect.server({
-    port: 1337,
-    root: [__dirname] + '/_build/',
-    livereload: false
-  });
+gulp.task('browser-sync', function() {
+    browserSync({
+        server: {
+            baseDir: [__dirname] + '/_build/',
+        }
+    });
 });
+
 
 //  watch: monitor html and static assets updates
 //===========================================
@@ -105,4 +97,4 @@ gulp.task('watch', function() {
 
 //  Default Gulp Task
 //===========================================
-gulp.task('default', ['fileinclude', 'compass', 'rebuild', 'connect', 'watch']);
+gulp.task('default', ['fileinclude', 'compass', 'rebuild', 'browser-sync', 'watch']);
