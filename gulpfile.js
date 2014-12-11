@@ -16,7 +16,11 @@ var paths = {
   sass: './_scss/'
 };
 
-function swallowError (error) {
+function swallowError(error) {
+  this.emit('end');
+}
+
+function reportError(error) {
   notify.onError().apply(this, arguments);
   this.emit('end');
 }
@@ -56,7 +60,7 @@ gulp.task('compass', function() {
       css: './_build/assets/css/',
       sass: '_scss'
     }))
-    .on('error', swallowError)
+    .on('error', reportError)
     .pipe(reload({stream:true}));
 });
 
@@ -92,9 +96,12 @@ gulp.task('watch', function() {
   gulp.watch(path.join(paths.sass, '**/*.scss'), ['compass']);
 
   // Watch task for templates, partials, static files
-  gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude']);
-  gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude']);
-  gulp.watch(path.join(paths.assets, '**/*'), ['rebuild']);
+  gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude'])
+    .on('error', swallowError);
+  gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude'])
+    .on('error', swallowError);
+  gulp.watch(path.join(paths.assets, '**/*'), ['rebuild'])
+    .on('error', swallowError);
 
 });
 
