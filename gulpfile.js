@@ -30,6 +30,7 @@ gulp.task('clean', function (cb) {
 
 // fileinclude: grab partials from templates and render html files
 // ==========================================
+
 gulp.task('fileinclude', function() {
   gulp.src(path.join(paths.templates, '**/*.tpl.html'))
   .pipe(fileinclude({
@@ -47,6 +48,7 @@ gulp.task('fileinclude', function() {
 
 //  compass: compile sass to css
 //===========================================
+
 gulp.task('compass', function() {
   gulp.src(path.join(paths.sass, '*.scss'))
     .pipe(compass({
@@ -72,6 +74,7 @@ gulp.task('rebuild', function() {
 
 //  Browsersync server
 //===========================================
+
 gulp.task('browser-sync', function() {
   browserSync({
     server: {
@@ -82,6 +85,7 @@ gulp.task('browser-sync', function() {
 
 //  watch: monitor html and static assets updates
 //===========================================
+
 gulp.task('watch', function() {
 
   //Watch task for sass
@@ -96,4 +100,5 @@ gulp.task('watch', function() {
 
 //  Default Gulp Task
 //===========================================
+
 gulp.task('default', ['fileinclude', 'compass', 'rebuild', 'browser-sync', 'watch']);
