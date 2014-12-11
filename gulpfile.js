@@ -64,7 +64,7 @@ gulp.task('compass', function() {
 
 gulp.task('rebuild', function() {
   gulp.src([
-    './assets/**'
+    path.join(paths.assets, '**')
   ])
     .pipe(changed('./_build/assets/'))
     .pipe(gulp.dest('./_build/assets/'))
@@ -85,10 +85,11 @@ gulp.task('browser-sync', function() {
 //  watch: monitor html and static assets updates
 //===========================================
 gulp.task('watch', function() {
+
   //Watch task for sass
   gulp.watch(path.join(paths.sass, '**/*.scss'), ['compass']);
 
-  // watch task for templates, partials, static files
+  // Watch task for templates, partials, static files
   gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude']);
   gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude']);
   gulp.watch(path.join(paths.assets, '**/*'), ['rebuild']);
