@@ -98,4 +98,4 @@ gulp.task('watch', function() {
 
 //  Default Gulp Task
 //===========================================
-gulp.task('default', ['fileinclude', 'compass', 'rebuild', 'browser-sync', 'watch']);
+gulp.task('default', ['watch', 'fileinclude', 'compass', 'rebuild', 'browser-sync']);
