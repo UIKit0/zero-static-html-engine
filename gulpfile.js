@@ -74,13 +74,12 @@ gulp.task('rebuild', function() {
 //  Browsersync server
 //===========================================
 gulp.task('browser-sync', function() {
-    browserSync({
-        server: {
-            baseDir: [__dirname] + '/_build/',
-        }
-    });
+  browserSync({
+    server: {
+      baseDir: [__dirname] + '/_build/',
+    }
+  });
 });
-
 
 //  watch: monitor html and static assets updates
 //===========================================
