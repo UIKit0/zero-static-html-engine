@@ -42,7 +42,6 @@ gulp.task('fileinclude', function() {
     extname: ".html"
   }))
   .pipe(gulp.dest('./_build/'))
-  .on('error', swallowError)
   .pipe(reload({stream:true}));
 });
 
