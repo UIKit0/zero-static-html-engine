@@ -23,8 +23,6 @@ In a terminal window run:
 
 And visit [http://localhost:1337/](http://localhost:1337/). This displays the flat-file content of the `_site` directory.
 
-Install and enable the [LiveReload Chrome Extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) to auto-refresh the browser.
-
 ## Troubleshooting
 
 - If you're unable to run npm install without errors try running the following as you may have a permissions issue. Take from solution to [NPM throws error without sudo](http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo).
