@@ -9,7 +9,7 @@ Output a static site using Gulp tasks based on [Considering a Static Site Tool? 
 - Sass/Compass compilation
 - Preview server
 - Watch processes recompiles HTML, Sass, and any assets
-- Everything is compiled into the `_site` directory
+- Everything is compiled into the `_build` directory
 
 ## Usage
 
@@ -21,7 +21,7 @@ In a terminal window run:
 
      gulp
 
-And visit [http://localhost:1337/](http://localhost:1337/). This displays the flat-file content of the `_site` directory.
+And it should open your browser to  [http://localhost:3000](http://localhost:3000). This displays the flat-file content of the `_build` directory.
 
 ## Troubleshooting
 
