@@ -1,7 +1,7 @@
 Gulp Static Generator
 =====================
 
-Output a static site using Gulp tasks based on [https://medium.com/objects-in-space/considering-a-static-site-tool-learn-gulp-2fd5f9821fc4](https://medium.com/objects-in-space/considering-a-static-site-tool-learn-gulp-2fd5f9821fc4)
+Output a static site using Gulp tasks based on [Considering a Static Site Tool? Learn Gulp.](https://medium.com/objects-in-space/considering-a-static-site-tool-learn-gulp-2fd5f9821fc4)
 
 ## Features
 
