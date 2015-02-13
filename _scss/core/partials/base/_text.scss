@@ -1,0 +1,32 @@
+// # Text
+// Special type design treatments.
+
+// ## Editiable
+// Text that can be edited, like project titles.
+
+//[hc]
+//
+//     <!-- Can be applied to any element -->
+//     <p v-editable-text>This Text is Editable</p>
+//
+//[/hc]
+
+.editable {
+
+  &:hover {
+    color: map-get($font-color, muted);
+
+    &:after {
+      color: map-get($font-color, muted);
+      content: '\270E';
+      font-size: 1em;
+      padding-left: spacer(0.5);
+    }
+  }
+}
+
+// For code examples.
+
+.monospace {
+  font-family: map-get($font-family, monospace);
+}

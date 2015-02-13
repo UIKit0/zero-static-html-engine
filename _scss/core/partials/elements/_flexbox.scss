@@ -1,0 +1,92 @@
+// # Flexbox
+// Flexbox support is full on Chrome, Firefox and Safari (with prefix) and nearly full for IE 10.
+//
+// - With IE10 at least one of the flex children needs to have a width or flex value otherwise the content in those children will not wrap. However, if none of children will collide, no width or flex value is needed.
+//
+// `flex-grow` is not supported by IE10, `justify-content` is the next best thing.
+//
+// Use in Sass with:
+//
+//[c]
+//     .foo {
+//          @extend %flex;
+//     }
+//[/c]
+//
+// or as classes directly in the HTML.
+//
+//[c]
+//     <div class="flex">item</div>
+//[/c]
+
+
+%flex,
+.flex {
+  display: -webkit-flex; // Safari
+  display: -ms-flexbox; // IE 10
+  display: flex;
+}
+
+%flex-1,
+.flex-1 {
+  -webkit-flex: 1; // Safari
+  -ms-flex: 1; // IE 10
+  flex: 1;
+}
+
+%flex-wrap--wrap,
+.flex-wrap--wrap {
+  -webkit-flex-wrap: wrap; // Safari
+  -ms-flex-wrap: wrap; // IE 10
+  flex-wrap: wrap;
+}
+
+%flex-wrap--nowrap,
+.flex-wrap--nowrap {
+  -webkit-flex-wrap: nowrap; // Safari
+  -ms-flex-wrap: nowrap; // IE 10
+  flex-wrap: nowrap;
+}
+
+%flex-direction--column,
+.flex-direction--column {
+  -webkit-flex-direction: column; // Safari
+  -ms-flex-direction: column; // IE 10
+  flex-direction: column;
+}
+
+%justify-content--space-between,
+.justify-content--space-between {
+  -webkit-justify-content: space-between; // Safari
+  -ms-flex-pack: justify; // IE 10
+  justify-content: space-between;
+}
+
+%justify-content--center,
+.justify-content--center {
+  -webkit-justify-content: center; // Safari
+  -ms-flex-pack: center; // IE 10
+  justify-content: center;
+}
+
+%align-items--center,
+.align-items--center {
+  -webkit-align-items: center; // Safari
+  -ms-flex-align: center; // IE 10
+  align-items: center;
+}
+
+%align-items--flex-end,
+.align-items--flex-end {
+  -webkit-align-items: flex-end; // Safari
+  -ms-flex-align: end; // IE 10
+  align-items: flex-end;
+}
+
+%align-items--flex-start,
+.align-items--flex-start {
+  -webkit-align-items: flex-start; // Safari
+  -ms-flex-align: start; // IE 10
+  align-items: flex-start;
+}
+

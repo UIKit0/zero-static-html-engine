@@ -1,0 +1,34 @@
+// # Lego Desktop
+// Root file driving the desktop CSS.
+
+@import 'compass';
+
+// ## Core and Desktop variables
+// Import `core` and `desktop` variables
+
+@import 'core/core-variables';
+
+// ## Sprites
+// Retina and non-retina classes.
+
+@import 'library/sprites/retina-sprites';
+
+// ## Core and Desktop partials
+// Import `core` and `desktop` partials
+
+@import 'core/core-partials';
+
+// ## Libraries
+// 3rd party code.
+
+@import 'library/jquery-ui/datepicker';
+
+// ## Trumps
+// Trumps use `!important` classes for overrides and should always be loaded last.
+
+@import 'core/partials/trumps/background';
+@import 'core/partials/trumps/layout';
+@import 'core/partials/trumps/margin';
+@import 'core/partials/trumps/padding';
+@import 'core/partials/trumps/type';
+@import 'core/partials/trumps/sizing';

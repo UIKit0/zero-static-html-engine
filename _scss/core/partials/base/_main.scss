@@ -1,0 +1,20 @@
+//# Main
+// High level defaults establishing font and color.
+
+html {
+  @include font-smoothing(on);
+  color: map-get($font-color, base);
+  background-color: map-get($background-color, base);
+  font-size: map-get($font-size, base);
+  font-family: map-get($font-family, base);
+  line-height: map-get($line-height, base);
+  font-weight: map-get($font-weight, base);
+}
+
+p {
+  margin-bottom: spacer(1);
+}
+
+b {
+  font-weight: map-get($font-weight, bold);
+}

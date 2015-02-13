@@ -1,0 +1,131 @@
+// # Sizing Trumps
+// Use rarely, for form elements only as a last resort.
+
+// IE10: The `-ms-flex-preferred-size` values are to overcome any `flex:...` values the element may have.
+// Otherwise the width collapses in IE.
+
+.width-50 {
+  width: 50px !important;
+  -ms-flex-preferred-size: 50px !important;
+}
+
+.width-75 {
+  width: 75px !important;
+  -ms-flex-preferred-size: 50px !important;
+}
+
+.width-100 {
+  width: 100px !important;
+  -ms-flex-preferred-size: 100px !important;
+}
+
+.width-150 {
+  width: 150px !important;
+  -ms-flex-preferred-size: 150px !important;
+}
+
+.width-200 {
+  width: 200px !important;
+  -ms-flex-preferred-size: 200px !important;
+}
+
+.width-250 {
+  width: 250px !important;
+  -ms-flex-preferred-size: 250px !important;
+}
+
+.width-300 {
+  width: 300px !important;
+  -ms-flex-preferred-size: 300px !important;
+}
+
+// ## Min Width Trumps
+
+.min-width-50 {
+  min-width: 50px !important;
+}
+
+.min-width-75 {
+  min-width: 75px !important;
+}
+
+.min-width-100 {
+  min-width: 100px !important;
+}
+
+.min-width-150 {
+  min-width: 150px !important;
+}
+
+.min-width-200 {
+  min-width: 200px !important;
+}
+
+.min-width-250 {
+  min-width: 250px !important;
+}
+
+.min-width-300 {
+  min-width: 300px !important;
+}
+
+
+// ## Height Trumps
+
+.height-50 {
+  height: 50px !important;
+}
+
+.height-75 {
+  height: 75px !important;
+}
+
+.height-100 {
+  height: 100px !important;
+}
+
+.height-150 {
+  height: 150px !important;
+}
+
+.height-200 {
+  height: 200px !important;
+}
+
+.height-250 {
+  height: 250px !important;
+}
+
+.height-300 {
+  height: 300px !important;
+}
+
+// ## Min Height Trumps
+
+.min-height-50 {
+  min-height: 50px !important;
+}
+
+.min-height-75 {
+  min-height: 75px !important;
+}
+
+.min-height-100 {
+  min-height: 100px !important;
+}
+
+.min-height-150 {
+  min-height: 150px !important;
+}
+
+.min-height-200 {
+  min-height: 200px !important;
+}
+
+.min-height-250 {
+  min-height: 250px !important;
+}
+
+.min-height-300 {
+  min-height: 300px !important;
+}

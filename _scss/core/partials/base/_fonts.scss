@@ -1,0 +1,64 @@
+// # Fonts
+// Pulls in fonts from self hosting.
+
+// ### Font Support
+//
+// - woff2: Chrome 26+, Opera 23+
+// - woff: Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+
+// ### Proxima Light
+
+@font-face {
+  font-family: 'Proxima';
+  font-weight: 300;
+  src:
+    url(map-get($font-family, hosting-url) + 'proximanova-light.woff2') format('woff2'),
+    url(map-get($font-family, hosting-url) + 'proximanova-light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Proxima';
+  font-weight: 300;
+  font-style: italic;
+  src:
+    url(map-get($font-family, hosting-url) + 'proximanova-lightit.woff2') format('woff2'),
+    url(map-get($font-family, hosting-url) + 'proximanova-lightit.woff') format('woff');
+}
+
+// ### Proxima Regular
+
+@font-face {
+  font-family: 'Proxima';
+  font-weight: 400;
+  src:
+    url(map-get($font-family, hosting-url) + 'proximanova-reg.woff2') format('woff2'),
+    url(map-get($font-family, hosting-url) + 'proximanova-reg.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Proxima';
+  font-weight: 400;
+  font-style: italic;
+  src:
+    url(map-get($font-family, hosting-url) + 'proximanova-regit.woff2') format('woff2'),
+    url(map-get($font-family, hosting-url) + 'proximanova-regit.woff') format('woff');
+}
+
+// ### Proxima Bold
+
+@font-face {
+  font-family: 'Proxima';
+  font-weight: 500;
+  src:
+    url(map-get($font-family, hosting-url) + 'proximanova-bold.woff2') format('woff2'),
+    url(map-get($font-family, hosting-url) + 'proximanova-bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Proxima';
+  font-weight: 500;
+  font-style: italic;
+  src:
+    url(map-get($font-family, hosting-url) + 'proximanova-boldit.woff2') format('woff2'),
+    url(map-get($font-family, hosting-url) + 'proximanova-boldit.woff') format('woff');
+}

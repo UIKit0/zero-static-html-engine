@@ -3,16 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>Gulp</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="//code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="assets/css/lego-lodi.css">
+  <script src="assets/js/lego.min.js" type="text/javascript"></script>
   <script src="assets/js/local.js" type="text/javascript"></script>
 </head>
 <body>
-  @@include('./_html_partials/_header.html', {
-    "page": "index"
-  })
-  <div>This is the fun asdf.</div>
-  <img src="assets/i/show.jpg" alt="">
-  @@include('./_html_partials/_footer.html')
+@@include('./_html_partials/_svg-symbols.svg')
+
+
+
+
+<div style="margin:50px 100px">
+
+  <div class="logo push-quad--bottom"></div>
+
+  <div class="lego-spinner-wrap push-quad--bottom">
+    <div class="lego-spinner lego-spinner--small"></div>
+  </div>
+
+
+  <div class="lego-button-group">
+    <button class="lego-button">
+      <svg class="lego-icon">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#align-left"></use>
+      </svg>
+    </button>
+    <button class="lego-button">
+      <svg class="lego-icon">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#align-right"></use>
+      </svg>
+    </button>
+    <button class="lego-button">
+      <svg class="lego-icon">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#align-center"></use>
+      </svg>
+    </button>
+    <button class="lego-button">
+      foobary
+    </button>
+  </div>
+
+  <ul class="lego-block-list push-double--top">
+    <li>Bar</li>
+    <li>Baz</li>
+  </ul>
+
+  <div class="lego-dropdown-group" v-dropdown>
+    <button class="lego-button" data-toggle-dropdown>
+      Dropdown <span class="lego-arrow-inline--down"></span>
+    </button>
+    <ul class="lego-dropdown">
+      <li class="lego-dropdown__item">
+        <a href="#" class="lego-dropdown__block-link">Manage Collaborators</a>
+      </li>
+      <li class="lego-dropdown__item">
+        <a href="#" class="lego-dropdown__block-link">Manage This Thing</a>
+      </li>
+      <li class="lego-dropdown__item">
+        <a href="#" class="lego-dropdown__block-link">Experiment Change History</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+
+
 </body>
 </html>
