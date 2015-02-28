@@ -10,8 +10,8 @@ var gulp        = require('gulp'),
     path        = require("path");
 
 var paths = {
-  templates: './_html_templates/',
-  partials: './_html_partials/',
+  templates: './_templates/',
+  partials: './_partials/',
   assets: './assets/',
   sass: './_scss/'
 };
@@ -81,6 +81,9 @@ gulp.task('rebuild', function() {
 
 gulp.task('browser-sync', function() {
   browserSync({
+    notify: {
+        styles: [ "position:fixed;top:5px;right:5px;width:10px;height:10px;background:#c82144;border-radius:50%;overflow:hidden;color:#c82144" ]
+    },
     server: {
       baseDir: [__dirname] + '/_build/',
     }
