@@ -16,11 +16,11 @@
   "dependencies": {
     "gulp": "^3.8.10",
     "gulp-compass": "^2.0.3",
-    "gulp-file-include": "^0.7.1",
-    "gulp-notify": "^2.0.1",
+    "gulp-file-include": "^0.8.0",
+    "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.0",
-    "gulp-changed": "^1.1.0",
-    "browser-sync": "^1.7.2",
-    "del": "^1.1.0"
+    "gulp-changed": "^1.1.1",
+    "browser-sync": "^2.2.1",
+    "del": "^1.1.1"
   }
 }
