@@ -1,7 +1,111 @@
-html {
-    font: 13px/1.9 "Helvetica Neue", Helvetica, Arial, sans;
+// Layout
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: #f9f9f9;
+display: -webkit-flex; // Safari
+display: -ms-flexbox; // IE 10
+display: flex;
+-webkit-flex-direction: column; // Safari
+-ms-flex-direction: column; // IE 10
+flex-direction: column;
+}
+
+main {
+display: -webkit-flex; // Safari
+display: -ms-flexbox; // IE 10
+display: flex;
+-webkit-flex: 1; // Safari
+-ms-flex: 1; // IE 10
+flex: 1;
+-webkit-justify-content: center; // Safari
+-ms-flex-pack: center; // IE 10
+justify-content: center;
+-webkit-align-items: center; // Safari
+-ms-flex-align: center; // IE 10
+align-items: center;
+}
+
+// Style
+
+a {
+  color: #aaa;
+
+  &:hover {
+    color: #666;
+  }
+}
+
+html {
+  font: 17px/1.9 "Lato", Helvetica, Arial, sans;
+  font-weight: normal;
+  color: #4f4f4d;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #f9f8f4;
+  text-align: center;
+}
+
+header {
+  font-size: 13px;
+  padding: 20px 0 0;
+
+  a {
+    margin: 0 20px;
+  }
+}
+
+footer {
+  padding: 0 0 20px;
+}
+
+h1 {
+  font-size: 50px;
+  letter-spacing: -2px;
+  margin: 0 0 10px;
+  line-height: 1;
+}
+
+main {
+  text-shadow: 0 1px 0 #fff;
+}
+
+.default-message {
+  font-size: 13px;
+  color: #777;
+}
+
+.logo {
+  margin: 30px auto 30px;
+}
+
+.logo-atomeye {
+  opacity: .2;
+  width: 70px;
+  height: 28px;
+  background: url(../i/logo.svg) center center no-repeat;
+  background-size: 100% auto;
+  display: block;
+  margin: 0 auto;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.muted {
+  color: #777;
+}
+
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
