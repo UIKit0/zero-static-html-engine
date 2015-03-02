@@ -81,6 +81,7 @@ gulp.task('rebuild', function() {
 
 gulp.task('browser-sync', function() {
   browserSync({
+    reloadDelay: 300,
     notify: {
         styles: [ "position:fixed;top:5px;right:5px;width:10px;height:10px;background:#c82144;border-radius:50%;overflow:hidden;color:#c82144" ]
     },
