@@ -1,19 +1,27 @@
 var gulp        = require('gulp'),
     compass     = require('gulp-compass'),
-    fileinclude = require('gulp-file-include'),
     rename      = require('gulp-rename'),
     notify      = require('gulp-notify'),
     del         = require('del'),
     changed     = require('gulp-changed'),
     browserSync = require('browser-sync'),
     reload      = browserSync.reload,
-    path        = require("path");
+    path        = require("path"),
+    swig        = require("gulp-swig"),
+    opts        = {
+      setup: function(swig) {
+        swig.setDefaults({
+          cache: false,
+          loader: swig.loaders.fs(__dirname + '/partials/') // Set partial path root.
+        });
+      }
+};
 
 var paths = {
-  templates: './_templates/',
-  partials: './_partials/',
+  templates: './templates/',
+  partials: './partials/',
   assets: './assets/',
-  sass: './_scss/'
+  sass: './scss/'
 };
 
 function swallowError(error) {
@@ -32,14 +40,14 @@ gulp.task('clean', function (cb) {
   del('./_build/', cb);
 });
 
-// fileinclude: grab partials from templates and render html files
+// buildTemplates: grab partials from templates and render html files
 // ==========================================
 
-gulp.task('fileinclude', function() {
-  gulp.src(path.join(paths.templates, '**/*.tpl.html'))
-  .pipe(fileinclude({
-    basepath: '@root'
-  }))
+gulp.task('buildTemplates', function() {
+  gulp.src([
+    path.join(paths.templates, '**/*.tpl.html')
+  ])
+  .pipe(swig(opts))
   .pipe(rename({
     extname: ""
   }))
@@ -50,6 +58,7 @@ gulp.task('fileinclude', function() {
   .pipe(reload({stream:true}));
 });
 
+
 //  compass: compile sass to css
 //===========================================
 
@@ -58,18 +67,18 @@ gulp.task('compass', function() {
     .pipe(compass({
       config_file: './config.rb',
       css: './_build/assets/css/',
-      sass: '_scss'
+      sass: 'scss'
     }))
     .on('error', reportError)
     .pipe(reload({stream:true}));
 });
 
-//  rebuild: copy any new files
+//  buildAssets: copy any new files
 //===========================================
 
-gulp.task('rebuild', function() {
+gulp.task('buildAssets', function() {
   gulp.src([
-    path.join(paths.assets, '**')
+    path.join(paths.assets, '**/*.*')
   ])
     .pipe(changed('./_build/assets/'))
     .pipe(gulp.dest('./_build/assets/'))
@@ -83,8 +92,9 @@ gulp.task('browser-sync', function() {
   browserSync({
     reloadDelay: 300,
     notify: {
-        styles: [ "position:fixed;top:5px;right:5px;width:10px;height:10px;background:#c82144;border-radius:50%;overflow:hidden;color:#c82144" ]
+        styles: [ "position:fixed;top:5px;right:5px;width:10px;height:10px;background:#c82144;border-radius:50%;overflow:hidden;color:#c82144;z-index:99999" ]
     },
+    port: 8081,
     server: {
       baseDir: [__dirname] + '/_build/',
     }
@@ -100,11 +110,11 @@ gulp.task('watch', function() {
   gulp.watch(path.join(paths.sass, '**/*.scss'), ['compass']);
 
   // Watch task for templates, partials, static files
-  gulp.watch(path.join(paths.templates, '**/*.html'), ['fileinclude'])
+  gulp.watch(path.join(paths.templates, '**/*.html'), ['buildTemplates'])
     .on('error', swallowError);
-  gulp.watch(path.join(paths.partials, '**/*.html'), ['fileinclude'])
+  gulp.watch(path.join(paths.partials, '**/*.html'), ['buildTemplates'])
     .on('error', swallowError);
-  gulp.watch(path.join(paths.assets, '**/*'), ['rebuild'])
+  gulp.watch(path.join(paths.assets, '**/*'), ['buildAssets'])
     .on('error', swallowError);
 
 });
@@ -112,4 +122,4 @@ gulp.task('watch', function() {
 //  Default Gulp Task
 //===========================================
 
-gulp.task('default', ['fileinclude', 'compass', 'rebuild', 'browser-sync', 'watch']);
+gulp.task('default', ['buildTemplates', 'compass', 'buildAssets', 'browser-sync', 'watch']);

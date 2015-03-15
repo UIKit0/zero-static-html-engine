@@ -1,8 +1,8 @@
-@@include('./_partials/_head.html', {
-  "page": "index"
-})
+{% include '_head.html' {
+  page: "index"
+}%}
 
-  @@include('./_partials/_header.html')
+  {% include '_header.html' %}
 
   <main>
     <div class="content">
@@ -17,6 +17,6 @@
     </div>
   </main>
 
-  @@include('./_partials/_footer.html')
+  {% include '_footer.html' %}
 
-@@include('./_partials/_foot.html')
+{% include '_foot.html' %}

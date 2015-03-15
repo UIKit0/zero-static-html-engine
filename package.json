@@ -1,26 +1,29 @@
 {
-  "name": "gulp-site-generator",
+  "name": "zero-static-html-engine",
   "version": "0.0.1",
-  "description": "Basic watch and builder of flat html.",
+  "description": "Minimal watch and builder of flat html.",
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tomgenoni/gulp-static-generator"
+    "url": "git://github.com/tomgenoni/zero-static-html-engine"
   },
   "author": "Tom Genoni",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tomgenoni/gulp-static-generator/issues"
+    "url": "https://github.com/tomgenoni/zero-static-html-engine/issues"
   },
-  "homepage": "https://github.com/tomgenoni/gulp-static-generator",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "homepage": "https://github.com/tomgenoni/zero-static-html-engine",
   "dependencies": {
+    "browser-sync": "^2.2.1",
+    "del": "^1.1.1",
     "gulp": "^3.8.10",
+    "gulp-changed": "^1.1.1",
     "gulp-compass": "^2.0.3",
-    "gulp-file-include": "^0.8.0",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.0",
-    "gulp-changed": "^1.1.1",
-    "browser-sync": "^2.2.1",
-    "del": "^1.1.1"
+    "gulp-swig": "^0.7.4"
   }
 }
