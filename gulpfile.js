@@ -18,7 +18,7 @@ var gulp        = require('gulp'),
 };
 
 var paths = {
-  templates: './templates/',
+  pages: './pages/',
   partials: './partials/',
   assets: './assets/',
   sass: './scss/'
@@ -40,20 +40,14 @@ gulp.task('clean', function (cb) {
   del('./_build/', cb);
 });
 
-// buildTemplates: grab partials from templates and render html files
+// buildPages: grab partials from pages and render html files
 // ==========================================
 
-gulp.task('buildTemplates', function() {
+gulp.task('buildPages', function() {
   gulp.src([
-    path.join(paths.templates, '**/*.tpl.html')
+    path.join(paths.pages, '**/*.html')
   ])
   .pipe(swig(opts))
-  .pipe(rename({
-    extname: ""
-  }))
-  .pipe(rename({
-    extname: ".html"
-  }))
   .pipe(gulp.dest('./_build/'))
   .pipe(reload({stream:true}));
 });
@@ -109,10 +103,10 @@ gulp.task('watch', function() {
   //Watch task for sass
   gulp.watch(path.join(paths.sass, '**/*.scss'), ['compass']);
 
-  // Watch task for templates, partials, static files
-  gulp.watch(path.join(paths.templates, '**/*.html'), ['buildTemplates'])
+  // Watch task for pages, partials, static files
+  gulp.watch(path.join(paths.pages, '**/*.html'), ['buildPages'])
     .on('error', swallowError);
-  gulp.watch(path.join(paths.partials, '**/*.html'), ['buildTemplates'])
+  gulp.watch(path.join(paths.partials, '**/*.html'), ['buildPages'])
     .on('error', swallowError);
   gulp.watch(path.join(paths.assets, '**/*'), ['buildAssets'])
     .on('error', swallowError);
@@ -122,4 +116,4 @@ gulp.task('watch', function() {
 //  Default Gulp Task
 //===========================================
 
-gulp.task('default', ['buildTemplates', 'compass', 'buildAssets', 'browser-sync', 'watch']);
+gulp.task('default', ['buildPages', 'compass', 'buildAssets', 'browser-sync', 'watch']);
