@@ -5,7 +5,7 @@ Output a static site using Gulp tasks based on [Considering a Static Site Tool? 
 
 ## Features
 
-- Templates, including subfolders, and partials using [Swig](http://paularmstrong.github.io/swig/) 
+- Pages and partials using [Swig](http://paularmstrong.github.io/swig/)
 - Sass/Compass compilation
 - Preview server with Browsersync CSS injection and auto-reloaad
 - Watch processes recompiles HTML and static assets
