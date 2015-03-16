@@ -1,7 +1,7 @@
 Zero: A Minimal Static HTML Engine
 =====================
 
-Output a static site using Gulp tasks based on [Considering a Static Site Tool? Learn Gulp.](https://medium.com/objects-in-space/considering-a-static-site-tool-learn-gulp-2fd5f9821fc4)
+Output a static site with Gulp, inspired by [Considering a Static Site Tool? Learn Gulp.](https://medium.com/objects-in-space/considering-a-static-site-tool-learn-gulp-2fd5f9821fc4)
 
 ## Features
 
